@@ -46,9 +46,13 @@ WHERE AlbumId IN (SELECT AlbumId
     
 --7. Find the total number of invoices for each customer along with the customer's full name, city and email.
 
-SELECT CustomerID, FirstName, LastName, email, (SELECT Count(*) as InvoicesTotal
-    FROM Invoices
-    WHERE invoices.customerid = customers.customerid) as InvoicesTotal
+SELECT CustomerID, 
+    FirstName, 
+    LastName, 
+    email, 
+    (SELECT Count(*) as InvoicesTotal
+        FROM Invoices
+        WHERE invoices.customerid = customers.customerid) as InvoicesTotal
 FROM Customers
 GROUP BY CustomerId
 
